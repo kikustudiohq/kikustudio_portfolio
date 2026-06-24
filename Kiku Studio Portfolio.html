@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiku Studio — No-Code Web & Automation, Port Moresby</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#16201D;
+    --teal:#0E3B43;
+    --coral:#E8654B;
+    --sand:#EFE7D8;
+    --sand-deep:#E2D6BC;
+    --gold:#C9A227;
+    --paper:#FBF8F2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,248,242,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--sand-deep);
+  }
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:68px;}
+  .logo{font-family:'Fraunces',serif;font-weight:600;font-size:1.25rem;letter-spacing:-0.01em;}
+  .logo span{color:var(--coral);}
+  nav .links{display:flex;gap:28px;font-size:0.92rem;font-weight:500;}
+  nav .links a{opacity:0.75;transition:opacity .2s;}
+  nav .links a:hover{opacity:1;}
+  .nav-cta{
+    background:var(--ink);color:var(--paper);
+    padding:9px 18px;border-radius:3px;font-size:0.88rem;font-weight:500;
+  }
+
+  /* HERO */
+  header.hero{
+    padding:96px 0 80px;
+    position:relative;
+    overflow:hidden;
+    background:var(--ink);
+    color:var(--sand);
+  }
+  header.hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle at 85% 15%, rgba(232,101,75,0.25), transparent 45%),
+      radial-gradient(circle at 10% 90%, rgba(201,162,39,0.18), transparent 40%);
+    pointer-events:none;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--coral);box-shadow:0 0 0 3px rgba(232,101,75,0.25);}
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(2.4rem,5.5vw,4.1rem);
+    letter-spacing:-0.02em;
+    max-width:760px;
+    color:var(--paper);
+  }
+  .hero h1 em{font-style:italic;color:var(--coral);font-weight:500;}
+  .hero p.sub{
+    margin-top:24px;
+    font-size:1.08rem;
+    max-width:560px;
+    color:rgba(239,231,216,0.78);
+  }
+  .hero .cta-row{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;padding:13px 26px;border-radius:3px;
+    font-weight:500;font-size:0.95rem;
+  }
+  .btn-primary{background:var(--coral);color:var(--paper);}
+  .btn-ghost{border:1px solid rgba(239,231,216,0.35);color:var(--sand);}
+
+  /* TERMINAL SIGNATURE */
+  .terminal{
+    margin-top:56px;
+    max-width:560px;
+    background:rgba(0,0,0,0.28);
+    border:1px solid rgba(239,231,216,0.15);
+    border-radius:6px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.84rem;
+    overflow:hidden;
+  }
+  .terminal .bar{
+    display:flex;gap:6px;padding:10px 14px;
+    border-bottom:1px solid rgba(239,231,216,0.12);
+  }
+  .terminal .bar span{width:9px;height:9px;border-radius:50%;background:rgba(239,231,216,0.25);}
+  .terminal .body{padding:16px 18px;color:#cde0d8;}
+  .terminal .body .muted{color:rgba(239,231,216,0.45);}
+  .terminal .body .out{color:var(--gold);}
+
+  /* SECTIONS */
+  section{padding:88px 0;}
+  .section-head{margin-bottom:48px;max-width:600px;}
+  .section-head .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:0.78rem;
+    text-transform:uppercase;letter-spacing:0.08em;color:var(--coral);
+    margin-bottom:10px;display:block;
+  }
+  .section-head h2{
+    font-family:'Fraunces',serif;font-weight:600;
+    font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:-0.01em;
+  }
+  .section-head p{margin-top:14px;color:#4b554f;font-size:1.02rem;}
+
+  /* SERVICES */
+  .services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--sand-deep);border:1px solid var(--sand-deep);}
+  .service-card{background:var(--paper);padding:36px 32px;}
+  .service-card .num{font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--gold);}
+  .service-card h3{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:600;margin:14px 0 10px;}
+  .service-card p{color:#4b554f;font-size:0.96rem;}
+  .service-card .stack{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;}
+  .service-card .stack span{
+    font-family:'IBM Plex Mono',monospace;font-size:0.72rem;
+    padding:4px 9px;background:var(--sand);border-radius:20px;color:var(--teal);
+  }
+
+  /* WORK */
+  .work-section{background:var(--teal);color:var(--sand);}
+  .work-section .section-head .tag{color:var(--gold);}
+  .work-section .section-head h2{color:var(--paper);}
+  .work-section .section-head p{color:rgba(239,231,216,0.7);}
+  .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .work-card{
+    background:rgba(251,248,242,0.06);
+    border:1px solid rgba(239,231,216,0.14);
+    border-radius:6px;
+    padding:26px 24px;
+    display:flex;flex-direction:column;
+    transition:transform .25s, background .25s;
+  }
+  .work-card:hover{background:rgba(251,248,242,0.1);transform:translateY(-3px);}
+  .work-card .kind{font-family:'IBM Plex Mono',monospace;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--coral);}
+  .work-card h3{font-family:'Fraunces',serif;font-size:1.25rem;margin:10px 0 8px;color:var(--paper);}
+  .work-card p{font-size:0.92rem;color:rgba(239,231,216,0.72);flex-grow:1;}
+  .work-card .price{font-family:'IBM Plex Mono',monospace;font-size:0.78rem;color:var(--gold);margin-top:14px;}
+  .work-card a.visit{
+    margin-top:16px;font-size:0.86rem;font-weight:500;
+    color:var(--paper);border-top:1px solid rgba(239,231,216,0.18);
+    padding-top:14px;display:flex;justify-content:space-between;align-items:center;
+  }
+  .work-card a.visit .arrow{transition:transform .2s;}
+  .work-card a.visit:hover .arrow{transform:translateX(3px);}
+  .work-card.soon a.visit{opacity:0.45;cursor:default;}
+
+  /* APPROACH */
+  .approach-list{display:flex;flex-direction:column;border-top:1px solid var(--sand-deep);}
+  .approach-row{
+    display:grid;grid-template-columns:90px 1fr;gap:24px;
+    padding:26px 0;border-bottom:1px solid var(--sand-deep);
+    align-items:baseline;
+  }
+  .approach-row .mark{font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:0.85rem;}
+  .approach-row h4{font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;margin-bottom:6px;}
+  .approach-row p{color:#4b554f;font-size:0.95rem;max-width:560px;}
+
+  /* CONTACT */
+  .contact-section{background:var(--ink);color:var(--sand);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+  .contact-grid h2{font-family:'Fraunces',serif;font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:600;color:var(--paper);}
+  .contact-grid p.lead{margin-top:16px;color:rgba(239,231,216,0.7);max-width:420px;}
+  form{display:flex;flex-direction:column;gap:16px;}
+  label{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.06em;color:rgba(239,231,216,0.55);}
+  input,textarea{
+    background:transparent;border:none;border-bottom:1px solid rgba(239,231,216,0.3);
+    color:var(--paper);font-family:'Inter',sans-serif;font-size:0.98rem;
+    padding:10px 2px;outline:none;
+  }
+  input:focus,textarea:focus{border-bottom-color:var(--coral);}
+  textarea{resize:vertical;min-height:80px;}
+  button[type=submit]{
+    margin-top:8px;align-self:flex-start;
+    background:var(--coral);color:var(--paper);border:none;
+    padding:13px 28px;border-radius:3px;font-weight:500;font-size:0.95rem;cursor:pointer;
+  }
+  button[type=submit]:hover{background:#d6573f;}
+  .form-note{font-size:0.82rem;color:rgba(239,231,216,0.45);margin-top:4px;}
+
+  footer{padding:30px 0;border-top:1px solid var(--sand-deep);}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;font-size:0.82rem;color:#6c766f;}
+
+  @media (max-width:760px){
+    .services-grid,.work-grid,.contact-grid{grid-template-columns:1fr;}
+    nav .links{display:none;}
+    section{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">kiku<span>.</span>studio</div>
+    <div class="links">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#approach">Approach</a>
+    </div>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Port Moresby, Papua New Guinea</div>
+    <h1>Small studio. <em>Lean builds.</em><br>Real businesses online.</h1>
+    <p class="sub">Kiku Studio designs and ships websites and no-code automation for Port Moresby businesses — built fast, built to run on any device, with no bloated platforms in the way.</p>
+    <div class="cta-row">
+      <a href="#work" class="btn btn-primary">See the work</a>
+      <a href="#contact" class="btn btn-ghost">Start a project</a>
+    </div>
+
+    <div class="terminal">
+      <div class="bar"><span></span><span></span><span></span></div>
+      <div class="body">
+<span class="muted">$</span> ls kiku-studio/build-philosophy<br>
+<span class="out">single-file-html</span>  <span class="muted">// one file, every device, zero broken paths</span><br>
+<span class="out">no-code-first</span>  &nbsp;&nbsp;<span class="muted">// n8n · Airtable · Relevance AI</span><br>
+<span class="out">ship-in-days</span>  &nbsp;&nbsp;&nbsp;<span class="muted">// not months</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">What we do</span>
+      <h2>Two ways in. One small team.</h2>
+      <p>Most clients start with a site. Some come back once they're ready to automate the busywork behind it.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="num">01</div>
+        <h3>Websites that just work</h3>
+        <p>Single-page sites for shops, services, and personal brands. Self-contained, fast-loading, and built to look right whether it's opened on a phone in a market stall or a laptop in an office.</p>
+        <div class="stack"><span>HTML</span><span>CSS</span><span>GitHub Pages</span></div>
+      </div>
+      <div class="service-card">
+        <div class="num">02</div>
+        <h3>No-code automation</h3>
+        <p>Workflows that take repetitive admin off your plate — invoice tracking, lead capture, follow-ups — wired together without a custom backend.</p>
+        <div class="stack"><span>n8n</span><span>Airtable</span><span>Relevance AI</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="work-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Recent work</span>
+      <h2>A few things we've shipped</h2>
+      <p>Real client projects, priced for small PNG businesses — built and launched in days, not months.</p>
+    </div>
+    <div class="work-grid">
+
+      <div class="work-card">
+        <div class="kind">Local business · Live</div>
+        <h3>Gentlemen5 Barbershop</h3>
+        <p>One-page booking and showcase site for a Port Moresby barbershop — services, pricing, and contact in a clean, mobile-first layout.</p>
+        <div class="price">600–800 PGK build</div>
+        <a href="#" class="visit">Visit site <span class="arrow">→</span></a>
+      </div>
+
+      <div class="work-card soon">
+        <div class="kind">Reseller · Case study</div>
+        <h3>E.SALESpg</h3>
+        <p>Storefront site for a phone and book reseller — product listings and contact flow, deployed and iterated with the client directly.</p>
+        <div class="price">600–800 PGK build</div>
+        <a href="#" class="visit">Live link coming soon <span class="arrow">→</span></a>
+      </div>
+
+      <div class="work-card soon">
+        <div class="kind">Personal · Creative build</div>
+        <h3>3D Birthday Site</h3>
+        <p>A custom interactive birthday page built as a personal gift — a look at what's possible outside of the standard business template.</p>
+        <div class="price">Personal project</div>
+        <a href="#" class="visit">Private link <span class="arrow">→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="approach">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">How we work</span>
+      <h2>No bloat, no guesswork</h2>
+    </div>
+    <div class="approach-list">
+      <div class="approach-row">
+        <div class="mark">[ 1 ]</div>
+        <div><h4>Single-file builds</h4><p>One self-contained HTML file per site — no broken paths, no dependency issues, works the same on a PC or a phone you're editing from in the field.</p></div>
+      </div>
+      <div class="approach-row">
+        <div class="mark">[ 2 ]</div>
+        <div><h4>No-code over custom backend</h4><p>We reach for n8n, Airtable, and Relevance AI before writing a line of server code — faster to ship, easier for you to maintain.</p></div>
+      </div>
+      <div class="approach-row">
+        <div class="mark">[ 3 ]</div>
+        <div><h4>Priced for local businesses</h4><p>Flat project pricing built around what a Port Moresby shop or service business can actually justify spending — no agency markup.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <h2>Got a business that needs a site — or fewer spreadsheets?</h2>
+      <p class="lead">Tell us what you're working with. We'll reply with a straight answer on timeline and cost — usually within a day or two.</p>
+    </div>
+    <form action="#" onsubmit="return false;">
+      <div>
+        <label for="name">Name</label>
+        <input id="name" type="text" placeholder="Your name" required>
+      </div>
+      <div>
+        <label for="business">Business</label>
+        <input id="business" type="text" placeholder="What do you run?">
+      </div>
+      <div>
+        <label for="message">What do you need?</label>
+        <textarea id="message" placeholder="A new site, an automation, just exploring..."></textarea>
+      </div>
+      <button type="submit" onclick="
+        var n=document.getElementById('name').value,
+            b=document.getElementById('business').value,
+            m=document.getElementById('message').value;
+        window.location.href='mailto:kikustudiohq@gmail.com?subject=' +
+          encodeURIComponent('Project enquiry from ' + (n||'website visitor')) +
+          '&body=' + encodeURIComponent('Name: '+n+'\nBusiness: '+b+'\n\n'+m);
+      ">Send enquiry</button>
+      <p class="form-note">Opens your email app with this filled in — nothing is stored on this page.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Kiku Studio — Port Moresby, PNG</div>
+    <div>© 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
